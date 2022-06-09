@@ -97,10 +97,10 @@ import React, { useState } from 'react'
           name: 'Park bench',
           category: 'landscape',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricie',
-        },
+        }
       ]);
 
-      const currentPhotos = photos.filter((photo) => photo.category === category);
+      const currentPhotos = photos.filter(photo => photo.category === category);
       
     return (
       <div>
@@ -115,7 +115,7 @@ import React, { useState } from 'react'
         ))}
       </div>
       </div>
-    )
+    );
   };
 
   export default PhotoList;
