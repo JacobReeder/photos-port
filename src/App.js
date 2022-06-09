@@ -17,16 +17,15 @@ function App() {
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
   return (
     <div>
-      <Nav>
+      <Nav
        categories={categories}
         setCurrentCategory={setCurrentCategory}
-        currentCategory={currentCategory}
+        currentCategory={currentCategory}>
       </Nav>
       <main>
       <Gallery currentCategory={currentCategory}></Gallery>
         <About></About>
-      </main>
-      
+      </main>      
     </div>
   );
 }
