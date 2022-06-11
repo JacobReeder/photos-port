@@ -1,11 +1,6 @@
 import React from 'react';
 import { validateEmail } from '../../utils/helpers';
 
-/*const [formState, setFormState] = useState({ 
-    name: '<input type="text" defaultValue={name} onChange={handleChange} name="name" />', 
-    email: '<input type="email" defaultValue={email} name="email" onChange={handleChange} />',
-    message: '<textarea name="message" defaultValue={message} onChange={handleChange} rows="5"  />' 
-    });*/
 
 function ContactForm() {
     const [formState, setFormState] = useState({ name: ``, email: ``, message: `` });
@@ -16,8 +11,7 @@ function ContactForm() {
     const handleSubmit = (e) => {
       e.preventDefault();
       if (!errorMessage) {
-        setFormState({ [e.target.name]: e.target.value });
-        console.log('Form', formState);
+        console.log('Submit form', formState);
       }
     };
 
@@ -30,12 +24,18 @@ function ContactForm() {
                 setErrorMessage('Your email is invalid.');
               } else {
                 setErrorMessage('');
+              }
+              } else {
                 if (!e.target.value.length) {
-                    setErrorMessage(`${e.target.name} is required.`);
+                  setErrorMessage(`${e.target.name} is required.`);
                 } else {
-                    setErrorMessage('');
+                  setErrorMessage('');
                 }
-            }
+              }
+              if (!errorMessage) {
+                setFormState({ ...formState, [e.target.name]: e.target.value });
+                console.log('Handle Form', formState);
+              }            
         };
        
   return (
@@ -53,12 +53,18 @@ function ContactForm() {
          <div>
        <label htmlFor="message">Message:</label>
        <textarea name="message" rows="5" defaultValue={message} onBlur={handleChange} />
-       <button type="submit">Submit</button>
         </div>
+        {errorMessage && (
+          <div>
+            <p className="error-text">{errorMessage}</p>
+          </div>
+        )}
+
+        <button data-testid="button" type="submit">Submit</button>
           </form>
         </section>
       );
-  }
 }
+
     
     export default ContactForm;
